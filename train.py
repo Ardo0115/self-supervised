@@ -73,7 +73,7 @@ if __name__ == "__main__":
             wandb.log({"acc": acc[1], "acc_5": acc[5], "acc_knn": acc_knn}, commit=False)
 
         if (ep + 1) % 100 == 0:
-            fname = f"data/{cfg.method}_{cfg.dataset}_{ep}.pt"
+            fname = f"result_bs_{cfg.bs}_dropout/{cfg.method}_{cfg.dataset}_{ep}.pt"
             torch.save(model.state_dict(), fname)
 
         wandb.log({"loss": np.mean(loss_ep), "ep": ep})

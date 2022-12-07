@@ -1,4 +1,5 @@
 import torchvision.transforms as T
+from datasets.randaugment import RandomAugment
 
 
 def aug_transform(crop, base_transform, cfg, extra_t=[]):
@@ -16,6 +17,10 @@ def aug_transform(crop, base_transform, cfg, extra_t=[]):
                 interpolation=3,
             ),
             T.RandomHorizontalFlip(p=cfg.hf_p),
+
+            # RandomAugment(2,7,isPIL=True,augs=['Identity','AutoContrast','Equalize','Brightness','Sharpness',
+            #                                   'ShearX', 'ShearY', 'TranslateX', 'TranslateY', 'Rotate']),
+            # RandomAugment(2,7,isPIL=True,augs=['Brightness', 'Rotate']),
             *extra_t,
             base_transform(),
         ]

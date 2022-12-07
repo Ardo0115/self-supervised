@@ -12,6 +12,7 @@ def get_head(out_size, cfg):
             x.append(nn.BatchNorm1d(cfg.head_size))
         x.append(nn.ReLU())
         in_size = cfg.head_size
+    x.append(nn.Dropout(0.25))
     x.append(nn.Linear(in_size, cfg.emb))
     return nn.Sequential(*x)
 
